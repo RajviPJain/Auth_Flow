@@ -35,14 +35,10 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    const token = await Token.destroy({
-      where: {
-        token: req.body.token,
-      },
-    });
-    res.status(200).send({
-      success: true,
-    });
+    req.logout(()=>{
+      console.log("fd")
+    })
+    res.send('Logout')
   } catch (e) {
     console.log(e);
     res.send("No token");

@@ -41,6 +41,6 @@ router.get("/welcome", isAuthenticated, (req, res) => {
   res.send("Welcome");
 });
 
-router.delete("/logout", logout);
+router.get("/logout", logout);
 
 module.exports = router;
