@@ -30,9 +30,9 @@ const addUser = async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
       });
-      const createdToken = generateToken(user.id);
+      const token = generateToken(user.id);
       //    console.log(createdToken)
-      const token = await storeToken(createdToken, user.id);
+      // const token = await storeToken(createdToken, user.id);
 
       res.send({ user, token });
     } else {

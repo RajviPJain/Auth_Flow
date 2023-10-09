@@ -14,8 +14,8 @@ const login = async (req, res) => {
       const isMatch = bcrypt.compare(req.body.password, hashedPassword);
 
       if (isMatch) {
-        const createdToken = generateToken(user.id);
-        const token = await storeToken(createdToken, user.id);
+        const token = generateToken(user.id);
+        // const token = await storeToken(createdToken, user.id);
 
         const { id, email } = user;
         res.status(200).send({

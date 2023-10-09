@@ -9,22 +9,15 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/outhcallback",
+      callbackURL: process.env.REDIRECT_URL,
       scope: ["email", "profile"],
     },
     async function (request, accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      const user = await User.findOne({ where: { email: profile.email } });
-      console.log(user);
-      if (!user) {
-        const newUser = await User.create({
-          email: profile.email,
-        });
-        return done(null, newUser);
-      } else {
-        return done(null, false);
-        // or you could create a new account
-      }
+      // console.log(profile);
+      console.log("AccessToken", accessToken);
+      console.log("RefreshToken", refreshToken);
+
+      return done(null, profile);
     }
   )
 );
